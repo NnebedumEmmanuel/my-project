@@ -1,0 +1,81 @@
+import random
+
+print("let's play a game")
+name = input("first enter ur name: ")
+player_wins = 0
+computer_wins = 0
+alternative = ["rock", "paper", "scissors"]
+win = ""
+c = 0
+player_count = 0
+b = player_count
+a = input("choose e for easy/ m for medium/h for hard; ").lower()
+chance = b
+if a == "e":
+    b = 10
+elif a == "m":
+    b = 6
+elif a == "h":
+    b = 2
+else:
+    print("type a keyword next time")
+    quit()
+
+while True:
+    c = 1
+    chance = b-c
+    if player_count == b:
+        break
+    user_input = input("enter a rock-paper-scissors or e to end the game: ").lower()
+    if user_input == "e":
+        break
+    elif user_input == "":
+        print("don't skip u have to choose a keyword")
+        continue
+    elif user_input not in alternative:
+        print("this isn't a keyword")
+        continue
+    number = random.randint(0, 2)
+    computer_pick = alternative[number]
+    print(f"computer choose {computer_pick}")
+    if user_input == "paper" and computer_pick == "rock":
+        print("you got extra point")
+        player_wins += 1
+        b -= 1
+    elif user_input == "rock" and computer_pick == "scissors":
+        print("you got extra point")
+        player_wins += 1
+        b -= 1
+    elif user_input == "rock" and computer_pick == "rock":
+        print("draw")
+        b -= 1
+
+    elif user_input == "scissors" and computer_pick == "scissors":
+        print("draw")
+        b -= 1
+    elif user_input == "paper" and computer_pick == "paper":
+        print("draw")
+        b -= 1
+    elif user_input == "scissors" and computer_pick == "paper":
+        print("you got extra point")
+        player_wins += 1
+        b -= 1
+    else:
+        print("u lose!")
+        computer_wins += 1
+        b -= 1
+    if computer_wins > player_wins:
+        win = " computer is the winner"
+    elif computer_wins == player_wins:
+        win = "it's a fucking draw player"
+    else:
+        win = "u re the winner"
+    if chance != 0:
+        print(f"remember u have only {chance} chance to play")
+    else:
+        print("u re out of chance")
+if computer_wins == 0 and player_wins == 0:
+    win = "nobody wins"
+
+print(f"{name}u won {player_wins} times and computer won {computer_wins} times  therefore {win}")
+print(f"goodbye! {name}")
